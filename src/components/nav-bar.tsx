@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -223,9 +223,7 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* --------------------------------
-            Mobile Navigation
-        --------------------------------- */}
+        {/* Mobile navigation */}
         <div className="min-[901px]:hidden">
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger
@@ -249,45 +247,102 @@ export function Navbar() {
             <SheetContent
               side="right"
               className="
-                flex
-                w-[min(360px,86vw)]
-                flex-col
-                border-l-0
-                bg-white
-                p-5
-              "
+    flex
+    w-[min(360px,86vw)]
+    flex-col
+    border-l-0
+    bg-white
+    p-5
+  "
             >
-              <SheetHeader>
-                <SheetTitle className="sr-only">
-                  Northlight navigation
-                </SheetTitle>
+              {/* Mobile drawer header */}
+              <div className="flex items-center justify-between">
+                {/* Logo */}
+                <a
+                  href="/"
+                  onClick={handleNavClick}
+                  aria-label="Northlight home"
+                  className="
+        flex
+        items-center
+        gap-2
+        rounded-lg
+        focus-visible:outline-none
+        focus-visible:ring-2
+        focus-visible:ring-[#2B59FF]
+        focus-visible:ring-offset-3
+      "
+                >
+                  <img
+                    src={northlightMark}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-8 w-8"
+                  />
+
+                  <span
+                    className="
+          font-instrument-bold
+          text-[18px]
+          font-semibold
+          tracking-[-0.02em]
+          text-[#0A1024]
+        "
+                  >
+                    Northlight
+                  </span>
+                </a>
+
+                {/* Close button */}
+                <button
+                  type="button"
+                  aria-label="Close navigation menu"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="
+        inline-flex
+        h-10
+        w-10
+        items-center
+        justify-center
+        rounded-lg
+        bg-transparent
+        text-[#0A1024]
+        transition-colors
+        duration-200
+        hover:bg-[#F6F7FB]
+        hover:text-[#0A1024]
+        focus-visible:outline-none
+        focus-visible:ring-2
+        focus-visible:ring-[#2B59FF]
+        focus-visible:ring-offset-3
+      "
+                >
+                  <X aria-hidden="true" className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Accessible Sheet title */}
+              <SheetHeader className="sr-only">
+                <SheetTitle>Northlight navigation</SheetTitle>
               </SheetHeader>
 
               {/* Mobile Navigation Links */}
-              <nav aria-label="Mobile primary navigation" className="mt-4">
+              <nav aria-label="Mobile primary navigation" className="mt-8">
                 <ul>
                   {NAV_ITEMS.map((item) => {
                     const sectionId = item.href.replace("#", "");
-
                     const isActive = activeSection === sectionId;
 
                     return (
-                      <li
-                        key={item.href}
-                        className="
-                          border-b
-                          border-[#EEF0F5]
-                        "
-                      >
+                      <li key={item.href} className="border-b border-[#EEF0F5]">
                         <a
                           href={item.href}
                           onClick={handleNavClick}
                           aria-current={isActive ? "location" : undefined}
                           className={[
                             "flex min-h-[56px] items-center",
-                            "font-[Instrument_Sans]",
-                            "text-[18px]",
-                            "font-semibold",
+                            "font-instrument-semibold",
+                            "text-[20px]",
                             "transition-colors duration-200",
                             "focus-visible:outline-none",
                             "focus-visible:ring-2",
@@ -309,12 +364,12 @@ export function Navbar() {
               {/* Mobile Actions */}
               <div
                 className="
-                  mt-auto
-                  flex
-                  flex-col
-                  gap-3
-                  pt-6
-                "
+      mt-auto
+      flex
+      flex-col
+      gap-3
+      pt-6
+    "
               >
                 <a
                   href="#sign-in"
