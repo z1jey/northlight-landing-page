@@ -10,6 +10,7 @@ A responsive landing page for Northlight, a fictional product analytics platform
 - Tailwind CSS
 - shadcn/ui
 - Lucide React
+- Reactbits
 - Tanstack Router
 
 ## Getting Started
