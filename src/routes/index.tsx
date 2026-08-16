@@ -4,6 +4,7 @@ import { TrustBar } from "@/sections/trusted-bar";
 import { Features } from "@/sections/features";
 import { HowItWorks } from "@/sections/how-it-works";
 import { Pricing } from "@/sections/pricing";
+import { Testimonial } from "@/sections/testimonial";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -18,6 +19,7 @@ function HomePage() {
         <Features />
         <HowItWorks />
         <Pricing />
+        <Testimonial />
       </main>
     </>
   );
