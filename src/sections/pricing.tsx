@@ -257,7 +257,9 @@ export function Pricing() {
                       </div>
 
                       <p
+                        key={`${plan.name}-billing-${isYearly ? "yearly" : "monthly"}`}
                         className="
+                        price-change
                           mt-2
                           font-inter-regular
                           text-[14px]
