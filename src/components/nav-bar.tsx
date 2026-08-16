@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
+
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+
 import {
   Sheet,
   SheetContent,
@@ -23,8 +25,8 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollTarget, setScrollTarget] = useState<string | null>(null);
 
-  // Header scroll state based on specs
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 8);
@@ -32,53 +34,197 @@ export function Navbar() {
 
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Active navigation section, Updates the active navigation item based on the section
+  // Active navigation section
   useEffect(() => {
-    const sections = NAV_ITEMS.map(({ href }) =>
-      document.querySelector(href),
-    ).filter((section): section is Element => section !== null);
+    const handleActiveSection = () => {
+      const isDesktop = window.innerWidth >= 901;
 
-    if (!sections.length) {
+      // Sticky header + breathing room
+      const headerOffset = isDesktop ? 88 : 80;
+
+      const scrollPosition = window.scrollY + headerOffset;
+
+      // Programmatic navigation
+      if (scrollTarget) {
+        const target = document.getElementById(scrollTarget);
+
+        if (target) {
+          const targetTop =
+            target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+          const distance = Math.abs(window.scrollY - targetTop);
+
+          // Still scrolling toward the clicked section.
+          if (distance > 12) {
+            return;
+          }
+
+          // We reached the destination.
+          setScrollTarget(null);
+          setActiveSection(scrollTarget);
+          return;
+        }
+      }
+
+      /*
+       * -------------------------------------------------------
+       * Get navigation sections
+       * -------------------------------------------------------
+       */
+      const sections = NAV_ITEMS.map(({ href }) => {
+        const element = document.querySelector<HTMLElement>(href);
+
+        if (!element) {
+          return null;
+        }
+
+        return {
+          id: element.id,
+          top: element.getBoundingClientRect().top + window.scrollY,
+        };
+      }).filter(
+        (
+          section,
+        ): section is {
+          id: string;
+          top: number;
+        } => section !== null,
+      );
+
+      if (sections.length === 0) {
+        setActiveSection(null);
+        return;
+      }
+
+      /*
+       * -------------------------------------------------------
+       * HERO
+       *
+       * Before Features begins, nothing is active.
+       * -------------------------------------------------------
+       */
+      const firstSection = sections[0];
+
+      if (scrollPosition < firstSection.top) {
+        setActiveSection(null);
+        return;
+      }
+
+      /*
+       * -------------------------------------------------------
+       * FOOTER
+       *
+       * Once footer begins, hide the navigation indicator.
+       * -------------------------------------------------------
+       */
+      const footer = document.querySelector<HTMLElement>("footer");
+
+      if (footer) {
+        const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+
+        if (scrollPosition >= footerTop) {
+          setActiveSection(null);
+          return;
+        }
+      }
+
+      /*
+       * -------------------------------------------------------
+       * NORMAL SCROLLING
+       *
+       * The last section whose top has been reached becomes
+       * active.
+       * -------------------------------------------------------
+       */
+      let currentSection: string | null = null;
+
+      for (const section of sections) {
+        if (scrollPosition >= section.top) {
+          currentSection = section.id;
+        } else {
+          break;
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    handleActiveSection();
+
+    window.addEventListener("scroll", handleActiveSection, {
+      passive: true,
+    });
+
+    window.addEventListener("resize", handleActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", handleActiveSection);
+
+      window.removeEventListener("resize", handleActiveSection);
+    };
+  }, [scrollTarget]);
+
+  /*
+   * ---------------------------------------------------------
+   * Navigation click
+   * ---------------------------------------------------------
+   */
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    event.preventDefault();
+
+    const target = document.getElementById(sectionId);
+
+    if (!target) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    /*
+     * Move indicator immediately.
+     */
+    setActiveSection(sectionId);
 
-        if (visibleSection) {
-          setActiveSection(visibleSection.target.id);
-        }
-      },
-      {
-        /*
-         * Creates a smaller "active area" around the
-         * upper-middle portion of the viewport.
-         */
-        rootMargin: "-20% 0px -65% 0px",
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      },
-    );
+    /*
+     * Tell the scroll listener to temporarily keep
+     * this section active.
+     */
+    setScrollTarget(sectionId);
 
-    sections.forEach((section) => {
-      observer.observe(section);
+    /*
+     * Close mobile drawer.
+     */
+    setIsMenuOpen(false);
+
+    /*
+     * Respect reduced-motion preference.
+     */
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start",
     });
+  };
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  const handleNavClick = () => {
+  /*
+   * ---------------------------------------------------------
+   * Close mobile menu
+   * ---------------------------------------------------------
+   */
+  const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
@@ -89,6 +235,7 @@ export function Navbar() {
         "bg-white/82 backdrop-blur-[12px]",
         "supports-[backdrop-filter]:bg-white/70",
         "transition-[box-shadow,border-color] duration-200",
+
         isScrolled
           ? "border-b border-[#E4E8EF] shadow-[0_1px_2px_rgba(10,16,36,0.06)]"
           : "border-b border-transparent",
@@ -103,14 +250,16 @@ export function Navbar() {
           items-center
           justify-between
           px-5
+
           min-[901px]:h-[72px]
           min-[901px]:px-6
         "
       >
-        {/* logo */}
+        {/* LOGO */}
         <a
           href="/"
           aria-label="Northlight home"
+          onClick={closeMenu}
           className="
             flex
             items-center
@@ -142,7 +291,7 @@ export function Navbar() {
           </span>
         </a>
 
-        {/* Desktop navigation */}
+        {/* Desktop Navigation */}
         <nav
           aria-label="Primary navigation"
           className="hidden min-[901px]:block"
@@ -150,12 +299,14 @@ export function Navbar() {
           <ul className="flex items-center gap-8">
             {NAV_ITEMS.map((item) => {
               const sectionId = item.href.replace("#", "");
+
               const isActive = activeSection === sectionId;
 
               return (
                 <li key={item.href}>
                   <a
                     href={item.href}
+                    onClick={(event) => handleNavClick(event, sectionId)}
                     aria-current={isActive ? "location" : undefined}
                     className={[
                       "group relative inline-flex h-[72px] items-center",
@@ -165,8 +316,9 @@ export function Navbar() {
                       "focus-visible:ring-2",
                       "focus-visible:ring-[#2B59FF]",
                       "focus-visible:ring-offset-3",
+
                       isActive
-                        ? "text-[#0A1024] font-inter-bold"
+                        ? "font-inter-bold text-[#0A1024]"
                         : "text-[#525F72] hover:text-[#0A1024]",
                     ].join(" ")}
                   >
@@ -183,6 +335,8 @@ export function Navbar() {
                         "bg-[#2B59FF]",
                         "transition-[width,opacity]",
                         "duration-200",
+                        "ease-[cubic-bezier(0.4,0,0.2,1)]",
+
                         isActive
                           ? "w-full opacity-100"
                           : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100",
@@ -223,9 +377,10 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile navigation */}
+        {/* Mobile Navigation */}
         <div className="min-[901px]:hidden">
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+            {/* Menu button */}
             <SheetTrigger
               render={
                 <button
@@ -244,34 +399,35 @@ export function Navbar() {
               <Menu aria-hidden="true" className="h-5 w-5" />
             </SheetTrigger>
 
+            {/* Mobile drawer */}
             <SheetContent
               side="right"
               className="
-    flex
-    w-[min(360px,86vw)]
-    flex-col
-    border-l-0
-    bg-white
-    p-5
-  "
+                flex
+                w-[min(360px,86vw)]
+                flex-col
+                border-l-0
+                bg-white
+                p-5
+              "
             >
               {/* Mobile drawer header */}
               <div className="flex items-center justify-between">
                 {/* Logo */}
                 <a
                   href="/"
-                  onClick={handleNavClick}
+                  onClick={closeMenu}
                   aria-label="Northlight home"
                   className="
-        flex
-        items-center
-        gap-2
-        rounded-lg
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-[#2B59FF]
-        focus-visible:ring-offset-3
-      "
+                    flex
+                    items-center
+                    gap-2
+                    rounded-lg
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-[#2B59FF]
+                    focus-visible:ring-offset-3
+                  "
                 >
                   <img
                     src={northlightMark}
@@ -282,12 +438,12 @@ export function Navbar() {
 
                   <span
                     className="
-          font-instrument-bold
-          text-[18px]
-          font-semibold
-          tracking-[-0.02em]
-          text-[#0A1024]
-        "
+                      font-instrument-bold
+                      text-[18px]
+                      font-semibold
+                      tracking-[-0.02em]
+                      text-[#0A1024]
+                    "
                   >
                     Northlight
                   </span>
@@ -297,25 +453,25 @@ export function Navbar() {
                 <button
                   type="button"
                   aria-label="Close navigation menu"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenu}
                   className="
-        inline-flex
-        h-10
-        w-10
-        items-center
-        justify-center
-        rounded-lg
-        bg-transparent
-        text-[#0A1024]
-        transition-colors
-        duration-200
-        hover:bg-[#F6F7FB]
-        hover:text-[#0A1024]
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-[#2B59FF]
-        focus-visible:ring-offset-3
-      "
+                    inline-flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-lg
+                    bg-transparent
+                    text-[#0A1024]
+                    transition-colors
+                    duration-200
+                    hover:bg-[#F6F7FB]
+                    hover:text-[#0A1024]
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-[#2B59FF]
+                    focus-visible:ring-offset-3
+                  "
                 >
                   <X aria-hidden="true" className="h-5 w-5" />
                 </button>
@@ -326,18 +482,25 @@ export function Navbar() {
                 <SheetTitle>Northlight navigation</SheetTitle>
               </SheetHeader>
 
-              {/* Mobile Navigation Links */}
+              {/* Mobile navigation links */}
               <nav aria-label="Mobile primary navigation" className="mt-8">
                 <ul>
                   {NAV_ITEMS.map((item) => {
                     const sectionId = item.href.replace("#", "");
+
                     const isActive = activeSection === sectionId;
 
                     return (
-                      <li key={item.href} className="border-b border-[#EEF0F5]">
+                      <li
+                        key={item.href}
+                        className="
+                          border-b
+                          border-[#EEF0F5]
+                        "
+                      >
                         <a
                           href={item.href}
-                          onClick={handleNavClick}
+                          onClick={(event) => handleNavClick(event, sectionId)}
                           aria-current={isActive ? "location" : undefined}
                           className={[
                             "flex min-h-[56px] items-center",
@@ -348,6 +511,7 @@ export function Navbar() {
                             "focus-visible:ring-2",
                             "focus-visible:ring-[#2B59FF]",
                             "focus-visible:ring-inset",
+
                             isActive
                               ? "text-[#2B59FF]"
                               : "text-[#0A1024] hover:text-[#2B59FF]",
@@ -360,20 +524,18 @@ export function Navbar() {
                   })}
                 </ul>
               </nav>
-
-              {/* Mobile Actions */}
               <div
                 className="
-      mt-auto
-      flex
-      flex-col
-      gap-3
-      pt-6
-    "
+                  mt-auto
+                  flex
+                  flex-col
+                  gap-3
+                  pt-6
+                "
               >
                 <a
                   href="#sign-in"
-                  onClick={handleNavClick}
+                  onClick={closeMenu}
                   className={cn(
                     buttonVariants({
                       variant: "secondary",
@@ -387,7 +549,7 @@ export function Navbar() {
 
                 <a
                   href="#start-free-trial"
-                  onClick={handleNavClick}
+                  onClick={closeMenu}
                   className={cn(
                     buttonVariants({
                       variant: "primary",

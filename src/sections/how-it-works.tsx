@@ -6,7 +6,7 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       aria-labelledby="how-it-works-heading"
-      className="bg-[#F6F7FB]"
+      className="bg-[#F6F7FB] scroll-mt-[50px] min-[901px]:scroll-mt-[50px]"
     >
       <div
         className="

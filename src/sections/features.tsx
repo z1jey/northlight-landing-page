@@ -5,7 +5,7 @@ export function Features() {
     <section
       id="features"
       aria-labelledby="features-heading"
-      className="bg-white"
+      className="bg-white scroll-mt-[50px] min-[901px]:scroll-mt-[50px]"
     >
       <div
         className="

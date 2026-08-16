@@ -9,7 +9,11 @@ import { faqItems } from "@/mock/faq";
 
 export function FAQ() {
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="bg-white">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="scroll-mt-[50px] bg-white min-[901px]:scroll-mt-[50px]"
+    >
       <div
         className="
           mx-auto

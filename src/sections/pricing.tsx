@@ -14,7 +14,7 @@ export function Pricing() {
     <section
       id="pricing"
       aria-labelledby="pricing-heading"
-      className="bg-white"
+      className="scroll-mt-[50px] bg-white min-[901px]:scroll-mt-[50px]"
     >
       <div
         className="
