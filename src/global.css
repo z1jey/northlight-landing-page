@@ -94,7 +94,7 @@
 
   --sidebar-border: oklch(0.922 0 0);
 
-  --sidebar-ring: oklch(0.708 0 0)
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -179,7 +179,7 @@ code {
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: 'Inter Variable', sans-serif;
+  --font-sans: "Inter Variable", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -256,8 +256,57 @@ code {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;}
+    @apply border-border outline-ring/50;
+  }
   body {
-    @apply bg-background text-foreground;}
+    @apply bg-background text-foreground;
+  }
   html {
-    @apply font-sans;}}
+    @apply font-sans;
+  }
+}
+
+@font-face {
+  font-family: instrument-bold;
+  src: url("../src/assets/fonts/InstrumentSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: instrument-semibold;
+  src: url("../src/assets/fonts/InstrumentSans-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: inter-bold;
+  src: url("../src/assets/fonts/Inter-Bold.ttf");
+}
+
+@font-face {
+  font-family: inter-semibold;
+  src: url("../src/assets/fonts/Inter-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: inter-regular;
+  src: url("../src/assets/fonts/Inter-Regular.ttf");
+}
+
+.font-instrument-bold {
+  font-family: instrument-bold;
+}
+
+.font-instrument-semibold {
+  font-family: instrument-semibold;
+}
+
+.font-inter-regular {
+  font-family: inter-regular;
+}
+
+.font-inter-bold {
+  font-family: inter-bold;
+}
+
+.font-inter-semibold {
+  font-family: inter-semibold;
+}
