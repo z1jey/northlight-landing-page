@@ -1,0 +1,86 @@
+import { trustLogos } from "@/mock/trust-logos";
+
+export function TrustBar() {
+  return (
+    <section
+      aria-labelledby="trust-heading"
+      className="
+        border-y
+        border-[#EEF0F5]
+        bg-[#F6F7FB]
+      "
+    >
+      <div
+        className="
+          mx-auto
+          max-w-[1200px]
+          px-5
+          py-14
+          min-[641px]:py-[72px]
+          min-[901px]:px-6
+          min-[901px]:py-24
+        "
+      >
+        <h2
+          id="trust-heading"
+          className="
+            text-center
+            font-inter-regular
+            text-[13px]
+            leading-[1.65]
+            text-[#6A707F]
+          "
+        >
+          Trusted by product teams at
+        </h2>
+
+        <ul
+          className="
+            mx-auto
+            mt-8
+            flex
+            max-w-[900px]
+            flex-wrap
+            items-center
+            justify-center
+            gap-x-8
+            gap-y-8
+            min-[641px]:grid
+            min-[641px]:grid-cols-5
+            min-[641px]:gap-x-8
+            min-[901px]:gap-x-12
+          "
+        >
+          {trustLogos.map((logo) => (
+            <li
+              key={logo.name}
+              className="
+                flex
+                h-6
+                w-[calc((100%-4rem)/3)]
+                items-center
+                justify-center
+                min-[641px]:h-[30px]
+                min-[641px]:w-full
+              "
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="
+                  block
+                  h-6
+                  w-auto
+                  max-w-[120px]
+                  object-contain
+                  opacity-75
+                  min-[641px]:h-[30px]
+                "
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
