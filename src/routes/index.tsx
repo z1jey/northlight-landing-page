@@ -5,6 +5,7 @@ import { Features } from "@/sections/features";
 import { HowItWorks } from "@/sections/how-it-works";
 import { Pricing } from "@/sections/pricing";
 import { Testimonial } from "@/sections/testimonial";
+import { FAQ } from "@/sections/faqs";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -20,6 +21,7 @@ function HomePage() {
         <HowItWorks />
         <Pricing />
         <Testimonial />
+        <FAQ />
       </main>
     </>
   );

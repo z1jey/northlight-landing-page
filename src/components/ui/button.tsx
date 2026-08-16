@@ -50,7 +50,6 @@ const buttonVariants = cva(
           "text-white",
           "shadow-[0_1px_2px_rgba(10,16,36,0.06)]",
 
-          // Hover
           "hover:bg-[#1E3FCC]",
           "hover:-translate-y-px",
         ],
@@ -61,7 +60,6 @@ const buttonVariants = cva(
           "text-[#0A1024]",
           "shadow-[0_1px_2px_rgba(10,16,36,0.06)]",
 
-          // Hover
           "hover:border-[#6A707F]",
           "hover:bg-[#F6F7FB]",
           "hover:-translate-y-px",
@@ -72,7 +70,6 @@ const buttonVariants = cva(
           "bg-transparent",
           "text-[#525F72]",
 
-          // Hover
           "hover:bg-[#F6F7FB]",
           "hover:text-[#0A1024]",
         ],
@@ -84,6 +81,30 @@ const buttonVariants = cva(
         ],
 
         link: ["text-[#2B59FF]", "underline-offset-4", "hover:underline"],
+
+        // CTA: white button on dark CTA section
+        cta: [
+          "border-[#E4E8EF]",
+          "bg-white",
+          "text-[#0A1024]",
+          "shadow-[0_1px_2px_rgba(10,16,36,0.08)]",
+
+          "hover:bg-[#F6F7FB]",
+          "hover:-translate-y-px",
+          "hover:shadow-[0_3px_8px_rgba(0,0,0,0.14)]",
+        ],
+
+        // CTA secondary: dark button on dark CTA section
+        "cta-secondary": [
+          "border-[#525F72]",
+          "bg-transparent",
+          "text-white",
+
+          "hover:border-[#8A94A8]",
+          "hover:bg-white/5",
+          "hover:-translate-y-px",
+          "hover:shadow-[0_2px_8px_rgba(0,0,0,0.12)]",
+        ],
       },
 
       size: {
