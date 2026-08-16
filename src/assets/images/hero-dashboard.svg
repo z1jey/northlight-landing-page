@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" role="img" aria-label="Northlight dashboard showing active users, conversion rate and weekly session trends">
+  <defs>
+    <clipPath id="nl-card">
+      <rect x="1" y="1" width="758" height="498" rx="15.5"/>
+    </clipPath>
+    <linearGradient id="nl-area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2B59FF" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#2B59FF" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .nl-t { font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif; }
+      .nl-lbl { font-size: 10.5px; font-weight: 500; fill: #6A707F; letter-spacing: .6px; }
+      .nl-val { font-size: 25px; font-weight: 600; fill: #0A1024; letter-spacing: -.5px; }
+      .nl-up  { font-size: 11px; font-weight: 600; fill: #0F7B5F; }
+      .nl-dn  { font-size: 11px; font-weight: 600; fill: #B93A17; }
+      .nl-h   { font-size: 13px; font-weight: 600; fill: #0A1024; }
+      .nl-ax  { font-size: 9.5px; font-weight: 500; fill: #A6AEBE; }
+    </style>
+  </defs>
+
+  <!-- app frame -->
+  <rect x="0.5" y="0.5" width="759" height="499" rx="16" fill="#FFFFFF" stroke="#E4E8EF"/>
+
+  <g clip-path="url(#nl-card)">
+    <!-- sidebar -->
+    <rect x="1" y="1" width="63" height="498" fill="#F6F7FB"/>
+    <path d="M32 14c.9 4.5 2.8 6.4 7.3 7.3-4.5.9-6.4 2.8-7.3 7.3-.9-4.5-2.8-6.4-7.3-7.3 4.5-.9 6.4-2.8 7.3-7.3z" fill="#2B59FF"/>
+    <rect x="18" y="76"  width="28" height="28" rx="9" fill="#E4EAFF"/>
+    <rect x="27" y="85"  width="10" height="10" rx="3" fill="#2B59FF"/>
+    <rect x="18" y="116" width="28" height="28" rx="9" fill="#EAEDF3"/>
+    <rect x="18" y="156" width="28" height="28" rx="9" fill="#EAEDF3"/>
+    <rect x="18" y="196" width="28" height="28" rx="9" fill="#EAEDF3"/>
+    <rect x="18" y="236" width="28" height="28" rx="9" fill="#EAEDF3"/>
+    <circle cx="32" cy="462" r="14" fill="#DDE3F0"/>
+
+    <!-- top bar -->
+    <text class="nl-t nl-h" x="88" y="33">Overview</text>
+    <rect x="566" y="13" width="94" height="30" rx="9" fill="#FFFFFF" stroke="#E4E8EF"/>
+    <text class="nl-t" x="613" y="32" text-anchor="middle" font-size="11.5" font-weight="500" fill="#525F72">Last 30 days</text>
+    <rect x="668" y="13" width="68" height="30" rx="9" fill="#2B59FF"/>
+    <text class="nl-t" x="702" y="32" text-anchor="middle" font-size="11.5" font-weight="600" fill="#FFFFFF">Export</text>
+    <line x1="64" y1="56" x2="760" y2="56" stroke="#EDEFF4"/>
+  </g>
+
+  <!-- stat tiles -->
+  <g>
+    <rect x="88"  y="88" width="205" height="88" rx="12" fill="#FFFFFF" stroke="#E9ECF3"/>
+    <text class="nl-t nl-lbl" x="106" y="116">ACTIVE USERS</text>
+    <text class="nl-t nl-val" x="106" y="150">12,480</text>
+    <text class="nl-t nl-up"  x="275" y="149" text-anchor="end">+12.4%</text>
+
+    <rect x="309" y="88" width="205" height="88" rx="12" fill="#FFFFFF" stroke="#E9ECF3"/>
+    <text class="nl-t nl-lbl" x="327" y="116">CONVERSION</text>
+    <text class="nl-t nl-val" x="327" y="150">8.4%</text>
+    <text class="nl-t nl-up"  x="496" y="149" text-anchor="end">+3.1%</text>
+
+    <rect x="530" y="88" width="205" height="88" rx="12" fill="#FFFFFF" stroke="#E9ECF3"/>
+    <text class="nl-t nl-lbl" x="548" y="116">AVG. SESSION</text>
+    <text class="nl-t nl-val" x="548" y="150">3m 12s</text>
+    <text class="nl-t nl-dn"  x="717" y="149" text-anchor="end">−0.8%</text>
+  </g>
+
+  <!-- trend card -->
+  <g>
+    <rect x="88" y="192" width="420" height="284" rx="12" fill="#FFFFFF" stroke="#E9ECF3"/>
+    <text class="nl-t nl-h" x="108" y="228">Sessions</text>
+    <circle cx="432" cy="224" r="4" fill="#2B59FF"/>
+    <text class="nl-t" x="442" y="228" font-size="11" font-weight="500" fill="#6A707F">This month</text>
+
+    <g stroke="#EEF0F5" stroke-dasharray="3 4">
+      <line x1="108" y1="264" x2="488" y2="264"/>
+      <line x1="108" y1="307" x2="488" y2="307"/>
+      <line x1="108" y1="350" x2="488" y2="350"/>
+      <line x1="108" y1="393" x2="488" y2="393"/>
+    </g>
+    <line x1="108" y1="436" x2="488" y2="436" stroke="#E4E8EF"/>
+
+    <path d="M108 402 C150 392 170 410 203 398 C240 384 252 352 298 344 C342 336 352 368 393 322 C428 283 452 288 488 276 L488 436 L108 436 Z" fill="url(#nl-area)"/>
+    <path d="M108 402 C150 392 170 410 203 398 C240 384 252 352 298 344 C342 336 352 368 393 322 C428 283 452 288 488 276"
+          fill="none" stroke="#2B59FF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="488" cy="276" r="4.5" fill="#FFFFFF" stroke="#2B59FF" stroke-width="2.5"/>
+
+    <g class="nl-t nl-ax" text-anchor="middle">
+      <text x="112" y="454">Jan 1</text>
+      <text x="203" y="454">Jan 8</text>
+      <text x="298" y="454">Jan 15</text>
+      <text x="393" y="454">Jan 22</text>
+      <text x="484" y="454">Jan 29</text>
+    </g>
+  </g>
+
+  <!-- breakdown card -->
+  <g>
+    <rect x="524" y="192" width="211" height="284" rx="12" fill="#FFFFFF" stroke="#E9ECF3"/>
+    <text class="nl-t nl-h" x="544" y="228">By day</text>
+
+    <line x1="544" y1="436" x2="715" y2="436" stroke="#E4E8EF"/>
+    <g fill="#C9D5FF">
+      <rect x="544"   y="384" width="18" height="52" rx="5"/>
+      <rect x="574.6" y="358" width="18" height="78" rx="5"/>
+      <rect x="605.2" y="392" width="18" height="44" rx="5"/>
+      <rect x="635.8" y="340" width="18" height="96" rx="5"/>
+      <rect x="666.4" y="368" width="18" height="68" rx="5"/>
+    </g>
+    <rect x="697" y="324" width="18" height="112" rx="5" fill="#2B59FF"/>
+
+    <g class="nl-t nl-ax" text-anchor="middle">
+      <text x="553"   y="454">M</text>
+      <text x="583.6" y="454">T</text>
+      <text x="614.2" y="454">W</text>
+      <text x="644.8" y="454">T</text>
+      <text x="675.4" y="454">F</text>
+      <text x="706"   y="454">S</text>
+    </g>
+  </g>
+</svg>
