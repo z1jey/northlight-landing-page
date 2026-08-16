@@ -21,6 +21,27 @@
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
   --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
+  --c-ink: #0a1024;
+  --c-ink-2: #525f72;
+  --c-ink-3: #6a707f;
+
+  --c-line: #e4e8ef;
+  --c-line-soft: #eef0f5;
+
+  --c-surface: #ffffff;
+  --c-ground: #f6f7fb;
+
+  --c-accent: #2b59ff;
+  --c-accent-hover: #1e3fcc;
+  --c-accent-soft: #e4eaff;
+
+  --c-coral: #ff6b4a;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
