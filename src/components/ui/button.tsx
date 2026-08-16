@@ -18,8 +18,9 @@ const buttonVariants = cva(
     "text-[15px]",
     "font-medium",
     "whitespace-nowrap",
-    "transition-[background-color,border-color,color,transform]",
+    "transition-[background-color,border-color,color,transform,box-shadow]",
     "duration-200",
+    "ease-[cubic-bezier(0.4,0,0.2,1)]",
     "outline-none",
     "select-none",
 
@@ -48,7 +49,10 @@ const buttonVariants = cva(
           "bg-[#2B59FF]",
           "text-white",
           "shadow-[0_1px_2px_rgba(10,16,36,0.06)]",
+
+          // Hover
           "hover:bg-[#1E3FCC]",
+          "hover:-translate-y-px",
         ],
 
         secondary: [
@@ -56,13 +60,19 @@ const buttonVariants = cva(
           "bg-white",
           "text-[#0A1024]",
           "shadow-[0_1px_2px_rgba(10,16,36,0.06)]",
+
+          // Hover
           "hover:border-[#6A707F]",
           "hover:bg-[#F6F7FB]",
+          "hover:-translate-y-px",
+          "hover:shadow-[0_2px_6px_rgba(10,16,36,0.08)]",
         ],
 
         ghost: [
           "bg-transparent",
           "text-[#525F72]",
+
+          // Hover
           "hover:bg-[#F6F7FB]",
           "hover:text-[#0A1024]",
         ],
