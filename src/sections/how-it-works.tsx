@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { howItWorksSteps } from "@/mock/how-it-works";
+import AnimatedContent from "@/components/animations/AnimatedContent";
 
 export function HowItWorks() {
   return (
@@ -19,10 +20,11 @@ export function HowItWorks() {
           min-[901px]:py-24
         "
       >
-        {/* Section heading */}
-        <header className="mx-auto max-w-[720px] text-center">
-          <p
-            className="
+        <AnimatedContent delay={0.5}>
+          {/* Section heading */}
+          <header className="mx-auto max-w-[720px] text-center">
+            <p
+              className="
               font-inter-semibold
               text-[13px]
               uppercase
@@ -30,13 +32,13 @@ export function HowItWorks() {
               tracking-[0.08em]
               text-[#2B59FF]
             "
-          >
-            How it works
-          </p>
+            >
+              How it works
+            </p>
 
-          <h2
-            id="how-it-works-heading"
-            className="
+            <h2
+              id="how-it-works-heading"
+              className="
               mt-3
               font-instrument-semibold
               text-[clamp(28px,20px+2.1vw,40px)]
@@ -44,26 +46,26 @@ export function HowItWorks() {
               tracking-[-0.02em]
               text-[#0A1024]
             "
-          >
-            Live in an afternoon, not a quarter
-          </h2>
+            >
+              Live in an afternoon, not a quarter
+            </h2>
 
-          <p
-            className="
+            <p
+              className="
               mt-4
               font-inter-regular
               text-[18px]
               leading-[1.65]
               text-[#525F72]
             "
-          >
-            Three steps, and none of them involve a migration plan.
-          </p>
-        </header>
+            >
+              Three steps, and none of them involve a migration plan.
+            </p>
+          </header>
 
-        {/* Steps */}
-        <ol
-          className="
+          {/* Steps */}
+          <ol
+            className="
             mx-auto
             mt-10
             grid
@@ -75,21 +77,21 @@ export function HowItWorks() {
             min-[901px]:gap-x-0
             min-[901px]:gap-y-12
         "
-        >
-          {howItWorksSteps.map((step, index) => (
-            <li
-              key={step.number}
-              className="
+          >
+            {howItWorksSteps.map((step, index) => (
+              <li
+                key={step.number}
+                className="
                 relative
                 min-w-0
                 min-[901px]:px-6
                 min-[901px]:[&:nth-child(3n+1)]:pl-0
                 min-[901px]:[&:nth-child(3n)]:pr-0
             "
-            >
-              {/* Step number */}
-              <div
-                className="
+              >
+                {/* Step number */}
+                <div
+                  className="
                   flex
                   h-8
                   w-8
@@ -105,26 +107,26 @@ export function HowItWorks() {
                   text-[#2B59FF]
                   shadow-[0_1px_2px_rgba(10,16,36,0.06)]
                 "
-              >
-                {step.number}
-              </div>
+                >
+                  {step.number}
+                </div>
 
-              {/* Step content */}
-              <div className="mt-4">
-                <h3
-                  className="
+                {/* Step content */}
+                <div className="mt-4">
+                  <h3
+                    className="
                     font-instrument-semibold
                     text-[20px]
                     leading-[1.2]
                     tracking-[-0.02em]
                     text-[#0A1024]
                   "
-                >
-                  {step.title}
-                </h3>
+                  >
+                    {step.title}
+                  </h3>
 
-                <p
-                  className="
+                  <p
+                    className="
                     mt-2
                     font-inter-regular
                     text-[16px]
@@ -132,17 +134,17 @@ export function HowItWorks() {
                     text-[#525F72]
                     min-[901px]:max-w-[320px]
                 "
-                >
-                  {step.description}
-                </p>
-              </div>
+                  >
+                    {step.description}
+                  </p>
+                </div>
 
-              {/* Desktop connector */}
-              {index < howItWorksSteps.length - 1 && index % 3 !== 2 && (
-                <Separator
-                  orientation="horizontal"
-                  aria-hidden="true"
-                  className="
+                {/* Desktop connector */}
+                {index < howItWorksSteps.length - 1 && index % 3 !== 2 && (
+                  <Separator
+                    orientation="horizontal"
+                    aria-hidden="true"
+                    className="
                     absolute
                     left-14
                     right-6
@@ -155,11 +157,12 @@ export function HowItWorks() {
                     bg-transparent
                     min-[901px]:block
                 "
-                />
-              )}
-            </li>
-          ))}
-        </ol>
+                  />
+                )}
+              </li>
+            ))}
+          </ol>
+        </AnimatedContent>
       </div>
     </section>
   );

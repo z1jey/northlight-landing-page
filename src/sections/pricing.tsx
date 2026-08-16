@@ -1,11 +1,10 @@
 import { Check } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-
 import { Button } from "@/components/ui/button";
 import { pricingPlans } from "@/mock/pricing";
-
 import { useState } from "react";
+import AnimatedContent from "@/components/animations/AnimatedContent";
 
 export function Pricing() {
   const [isYearly, setIsYearly] = useState(false);
@@ -27,10 +26,11 @@ export function Pricing() {
           min-[901px]:py-24
         "
       >
-        {/* Section heading */}
-        <header className="mx-auto max-w-[720px] text-center">
-          <p
-            className="
+        <AnimatedContent delay={0.5}>
+          {/* Section heading */}
+          <header className="mx-auto max-w-[720px] text-center">
+            <p
+              className="
               font-inter-semibold
               text-[13px]
               uppercase
@@ -38,13 +38,13 @@ export function Pricing() {
               tracking-[0.08em]
               text-[#2B59FF]
             "
-          >
-            Pricing
-          </p>
+            >
+              Pricing
+            </p>
 
-          <h2
-            id="pricing-heading"
-            className="
+            <h2
+              id="pricing-heading"
+              className="
               mt-3
               font-instrument-semibold
               text-[clamp(28px,20px+2.1vw,40px)]
@@ -52,12 +52,12 @@ export function Pricing() {
               tracking-[-0.02em]
               text-[#0A1024]
             "
-          >
-            Simple pricing that scales with you
-          </h2>
+            >
+              Simple pricing that scales with you
+            </h2>
 
-          <p
-            className="
+            <p
+              className="
               mx-auto
               mt-4
               max-w-[680px]
@@ -66,15 +66,15 @@ export function Pricing() {
               leading-[1.65]
               text-[#525F72]
             "
-          >
-            Every plan includes unlimited dashboards, unlimited seats and 12
-            months of data history.
-          </p>
-        </header>
+            >
+              Every plan includes unlimited dashboards, unlimited seats and 12
+              months of data history.
+            </p>
+          </header>
 
-        {/* Billing switch */}
-        <div
-          className="
+          {/* Billing switch */}
+          <div
+            className="
             mt-10
             flex
             items-center
@@ -82,41 +82,41 @@ export function Pricing() {
             gap-3
             min-[901px]:mt-12
           "
-        >
-          <span
-            className={`
+          >
+            <span
+              className={`
               font-inter-semibold
               text-[14px]
               leading-[1.65]
               ${!isYearly ? "text-[#0A1024]" : "text-[#6A707F]"}
             `}
-          >
-            Monthly
-          </span>
+            >
+              Monthly
+            </span>
 
-          <Switch
-            checked={isYearly}
-            onCheckedChange={setIsYearly}
-            aria-label="Toggle yearly billing"
-            className="
+            <Switch
+              checked={isYearly}
+              onCheckedChange={setIsYearly}
+              aria-label="Toggle yearly billing"
+              className="
               h-[30px]
               w-[52px]
             "
-          />
+            />
 
-          <span
-            className={`
+            <span
+              className={`
               font-inter-semibold
               text-[14px]
               leading-[1.65]
               ${isYearly ? "text-[#0A1024]" : "text-[#6A707F]"}
             `}
-          >
-            Yearly
-          </span>
+            >
+              Yearly
+            </span>
 
-          <span
-            className="
+            <span
+              className="
               rounded-full
               bg-[#FFE6DE]
               px-3
@@ -126,14 +126,14 @@ export function Pricing() {
               leading-[1.4]
               text-[#B93A17]
             "
-          >
-            Save 20%
-          </span>
-        </div>
+            >
+              Save 20%
+            </span>
+          </div>
 
-        {/* Pricing cards */}
-        <ul
-          className="
+          {/* Pricing cards */}
+          <ul
+            className="
             mx-auto
             mt-10
             grid
@@ -144,15 +144,15 @@ export function Pricing() {
             min-[1025px]:max-w-none
             min-[1025px]:grid-cols-3
         "
-        >
-          {pricingPlans.map((plan) => {
-            const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
+          >
+            {pricingPlans.map((plan) => {
+              const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
 
-            return (
-              <li key={plan.name} className="relative self-start">
-                {plan.featured && (
-                  <span
-                    className="
+              return (
+                <li key={plan.name} className="relative self-start">
+                  {plan.featured && (
+                    <span
+                      className="
                       absolute
                       left-8
                       top-0
@@ -167,43 +167,43 @@ export function Pricing() {
                       leading-[1.4]
                       text-white
                     "
-                  >
-                    Most popular
-                  </span>
-                )}
+                    >
+                      Most popular
+                    </span>
+                  )}
 
-                <Card
-                  className={`${
-                    plan.featured
-                      ? `
+                  <Card
+                    className={`${
+                      plan.featured
+                        ? `
                            border
                           border-[#2B59FF]
                           shadow-[0_12px_32px_rgba(10,16,36,0.08)]
                         `
-                      : `
+                        : `
                           border-[#E4E8EF]
                           shadow-[0_1px_2px_rgba(10,16,36,0.06)]
                         `
-                  }
+                    }
                   `}
-                >
-                  <CardContent>
-                    {/* Plan name */}
-                    <h3
-                      className="
+                  >
+                    <CardContent>
+                      {/* Plan name */}
+                      <h3
+                        className="
                         font-instrument-bold
                         text-[20px]
                         leading-[1.2]
                         tracking-[-0.02em]
                         text-[#0A1024]
                       "
-                    >
-                      {plan.name}
-                    </h3>
+                      >
+                        {plan.name}
+                      </h3>
 
-                    {/* Description */}
-                    <p
-                      className="
+                      {/* Description */}
+                      <p
+                        className="
                         mt-2
                         min-h-[52px]
                         font-inter-regular
@@ -211,27 +211,27 @@ export function Pricing() {
                         leading-[1.65]
                         text-[#525F72]
                       "
-                    >
-                      {plan.description}
-                    </p>
+                      >
+                        {plan.description}
+                      </p>
 
-                    {/* Price */}
-                    <div className="mt-6">
-                      <div className="flex items-baseline">
-                        <span
-                          className="
+                      {/* Price */}
+                      <div className="mt-6">
+                        <div className="flex items-baseline">
+                          <span
+                            className="
                             font-instrument-semibold
                             text-[20px]
                             leading-none
                             text-[#0A1024]
                           "
-                        >
-                          $
-                        </span>
+                          >
+                            $
+                          </span>
 
-                        <span
-                          key={`${plan.name}-${isYearly ? "yearly" : "monthly"}`}
-                          className="
+                          <span
+                            key={`${plan.name}-${isYearly ? "yearly" : "monthly"}`}
+                            className="
                             price-change
                             font-instrument-semibold
                             text-[48px]
@@ -239,26 +239,26 @@ export function Pricing() {
                             tracking-[-0.03em]
                             text-[#0A1024]
                           "
-                        >
-                          {price}
-                        </span>
+                          >
+                            {price}
+                          </span>
 
-                        <span
-                          className="
+                          <span
+                            className="
                             ml-1
                             font-inter-regular
                             text-[14px]
                             leading-[1.65]
                             text-[#525F72]
                           "
-                        >
-                          /month
-                        </span>
-                      </div>
+                          >
+                            /month
+                          </span>
+                        </div>
 
-                      <p
-                        key={`${plan.name}-billing-${isYearly ? "yearly" : "monthly"}`}
-                        className="
+                        <p
+                          key={`${plan.name}-billing-${isYearly ? "yearly" : "monthly"}`}
+                          className="
                         price-change
                           mt-2
                           font-inter-regular
@@ -266,27 +266,27 @@ export function Pricing() {
                           leading-[1.65]
                           text-[#6A707F]
                         "
+                        >
+                          {isYearly
+                            ? "Billed yearly, per month"
+                            : "Billed monthly"}
+                        </p>
+                      </div>
+
+                      {/* CTA */}
+                      <Button
+                        variant={plan.buttonVariant}
+                        className="mt-4 w-full"
                       >
-                        {isYearly
-                          ? "Billed yearly, per month"
-                          : "Billed monthly"}
-                      </p>
-                    </div>
+                        {plan.buttonLabel}
+                      </Button>
 
-                    {/* CTA */}
-                    <Button
-                      variant={plan.buttonVariant}
-                      className="mt-4 w-full"
-                    >
-                      {plan.buttonLabel}
-                    </Button>
-
-                    {/* Features */}
-                    <ul className="mt-6 space-y-3">
-                      {plan.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="
+                      {/* Features */}
+                      <ul className="mt-6 space-y-3">
+                        {plan.features.map((feature) => (
+                          <li
+                            key={feature}
+                            className="
                             flex
                             items-start
                             gap-2
@@ -295,28 +295,29 @@ export function Pricing() {
                             leading-[1.65]
                             text-[#525F72]
                           "
-                        >
-                          <Check
-                            aria-hidden="true"
-                            className="
+                          >
+                            <Check
+                              aria-hidden="true"
+                              className="
                               mt-1
                               h-4
                               w-4
                               shrink-0
                               text-[#2B59FF]
                             "
-                            strokeWidth={2}
-                          />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </li>
-            );
-          })}
-        </ul>
+                              strokeWidth={2}
+                            />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </li>
+              );
+            })}
+          </ul>
+        </AnimatedContent>
       </div>
     </section>
   );

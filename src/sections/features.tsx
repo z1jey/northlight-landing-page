@@ -1,4 +1,5 @@
 import { features } from "@/mock/features";
+import AnimatedContent from "@/components/animations/AnimatedContent";
 
 export function Features() {
   return (
@@ -18,10 +19,11 @@ export function Features() {
           min-[901px]:py-24
         "
       >
-        {/* Section heading */}
-        <header className="mx-auto max-w-[720px] text-center">
-          <p
-            className="
+        <AnimatedContent delay={0.5}>
+          {/* Section heading */}
+          <header className="mx-auto max-w-[720px] text-center">
+            <p
+              className="
               font-inter-semibold
               text-[13px]
               uppercase
@@ -29,13 +31,13 @@ export function Features() {
               tracking-[0.08em]
               text-[#2B59FF]
             "
-          >
-            Features
-          </p>
+            >
+              Features
+            </p>
 
-          <h2
-            id="features-heading"
-            className="
+            <h2
+              id="features-heading"
+              className="
               mt-3
               font-instrument-semibold
               text-[clamp(28px,20px+2.1vw,40px)]
@@ -43,12 +45,12 @@ export function Features() {
               tracking-[-0.02em]
               text-[#0A1024]
             "
-          >
-            Everything you need to understand your users
-          </h2>
+            >
+              Everything you need to understand your users
+            </h2>
 
-          <p
-            className="
+            <p
+              className="
               mx-auto
               mt-4
               max-w-[680px]
@@ -57,15 +59,15 @@ export function Features() {
               leading-[1.65]
               text-[#525F72]
             "
-          >
-            One place for the questions product teams ask every week — and the
-            ones they only think to ask once something breaks.
-          </p>
-        </header>
+            >
+              One place for the questions product teams ask every week — and the
+              ones they only think to ask once something breaks.
+            </p>
+          </header>
 
-        {/* Feature cards */}
-        <ul
-          className="
+          {/* Feature cards */}
+          <ul
+            className="
             mt-10
             grid
             grid-cols-1
@@ -74,14 +76,14 @@ export function Features() {
             min-[641px]:grid-cols-2
             min-[1025px]:grid-cols-3
           "
-        >
-          {features.map((feature) => {
-            const Icon = feature.icon;
+          >
+            {features.map((feature) => {
+              const Icon = feature.icon;
 
-            return (
-              <li key={feature.title}>
-                <article
-                  className="
+              return (
+                <li key={feature.title}>
+                  <article
+                    className="
                     h-full
                     rounded-[16px]
                     border
@@ -95,10 +97,10 @@ export function Features() {
                     hover:border-[#E4EAFF]
                     hover:shadow-[0_4px_16px_rgba(10,16,36,0.06)]
                   "
-                >
-                  {/* Icon */}
-                  <div
-                    className="
+                  >
+                    {/* Icon */}
+                    <div
+                      className="
                       flex
                       h-11
                       w-11
@@ -108,45 +110,46 @@ export function Features() {
                       bg-[#E4EAFF]
                       text-[#2B59FF]
                     "
-                  >
-                    <Icon
-                      aria-hidden="true"
-                      className="h-[22px] w-[22px]"
-                      strokeWidth={1.8}
-                    />
-                  </div>
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        className="h-[22px] w-[22px]"
+                        strokeWidth={1.8}
+                      />
+                    </div>
 
-                  {/* Content */}
-                  <div className="mt-5">
-                    <h3
-                      className="
+                    {/* Content */}
+                    <div className="mt-5">
+                      <h3
+                        className="
                         font-instrument-semibold
                         text-[20px]
                         leading-[1.2]
                         tracking-[-0.02em]
                         text-[#0A1024]
                       "
-                    >
-                      {feature.title}
-                    </h3>
+                      >
+                        {feature.title}
+                      </h3>
 
-                    <p
-                      className="
+                      <p
+                        className="
                         mt-2
                         font-inter-regular
                         text-[16px]
                         leading-[1.65]
                         text-[#525F72]
                       "
-                    >
-                      {feature.description}
-                    </p>
-                  </div>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
+                      >
+                        {feature.description}
+                      </p>
+                    </div>
+                  </article>
+                </li>
+              );
+            })}
+          </ul>
+        </AnimatedContent>
       </div>
     </section>
   );

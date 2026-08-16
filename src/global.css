@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -140,48 +139,68 @@
 }
 
 @font-face {
-  font-family: instrument-bold;
-  src: url("../src/assets/fonts/InstrumentSans-Bold.ttf");
+  font-family: "Instrument Sans";
+  src: url("../src/assets/fonts/InstrumentSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: instrument-semibold;
-  src: url("../src/assets/fonts/InstrumentSans-SemiBold.ttf");
+  font-family: "Instrument Sans";
+  src: url("../src/assets/fonts/InstrumentSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: inter-bold;
-  src: url("../src/assets/fonts/Inter-Bold.ttf");
+  font-family: "Inter";
+  src: url("../src/assets/fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: inter-semibold;
-  src: url("../src/assets/fonts/Inter-SemiBold.ttf");
+  font-family: "Inter";
+  src: url("../src/assets/fonts/Inter-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: inter-regular;
-  src: url("../src/assets/fonts/Inter-Regular.ttf");
+  font-family: "Inter";
+  src: url("../src/assets/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 .font-instrument-bold {
-  font-family: instrument-bold;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 700;
 }
 
 .font-instrument-semibold {
-  font-family: instrument-semibold;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
 }
 
 .font-inter-regular {
-  font-family: inter-regular;
-}
-
-.font-inter-bold {
-  font-family: inter-bold;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
 
 .font-inter-semibold {
-  font-family: inter-semibold;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.font-inter-bold {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
 }
 
 /* price change effects */
