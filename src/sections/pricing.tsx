@@ -173,24 +173,18 @@ export function Pricing() {
                 )}
 
                 <Card
-                  className={`
-                    rounded-[16px]
-                    bg-white
-                    transition-[border-color,box-shadow,transform]
-                    duration-200
-                    ease-[cubic-bezier(0.4,0,0.2,1)]
-                    ${
-                      plan.featured
-                        ? `
+                  className={`${
+                    plan.featured
+                      ? `
                            border
                           border-[#2B59FF]
                           shadow-[0_12px_32px_rgba(10,16,36,0.08)]
                         `
-                        : `
+                      : `
                           border-[#E4E8EF]
                           shadow-[0_1px_2px_rgba(10,16,36,0.06)]
                         `
-                    }
+                  }
                   `}
                 >
                   <CardContent>
