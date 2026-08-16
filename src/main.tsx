@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactDOM from "react-dom/client"
 import { createRoot } from "react-dom/client";
 import "./global.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";

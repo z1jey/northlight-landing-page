@@ -7,6 +7,7 @@ export const Route = createRootRoute({ component: RootLayout });
 
 function RootLayout() {
   return (
+    //main layout
     <React.Fragment>
       <Navbar />
       <Outlet />

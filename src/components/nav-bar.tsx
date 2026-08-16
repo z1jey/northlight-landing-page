@@ -1,9 +1,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
-
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-
 import {
   Sheet,
   SheetContent,
@@ -11,8 +9,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-import northlightMark from "@/assets/logo/northlight-mark.svg";
 
 const NAV_ITEMS = [
   { label: "Features", href: "#features" },
@@ -104,28 +100,12 @@ export function Navbar() {
         setActiveSection(null);
         return;
       }
-
-      /*
-       * -------------------------------------------------------
-       * HERO
-       *
-       * Before Features begins, nothing is active.
-       * -------------------------------------------------------
-       */
       const firstSection = sections[0];
 
       if (scrollPosition < firstSection.top) {
         setActiveSection(null);
         return;
       }
-
-      /*
-       * -------------------------------------------------------
-       * FOOTER
-       *
-       * Once footer begins, hide the navigation indicator.
-       * -------------------------------------------------------
-       */
       const footer = document.querySelector<HTMLElement>("footer");
 
       if (footer) {
@@ -136,15 +116,6 @@ export function Navbar() {
           return;
         }
       }
-
-      /*
-       * -------------------------------------------------------
-       * NORMAL SCROLLING
-       *
-       * The last section whose top has been reached becomes
-       * active.
-       * -------------------------------------------------------
-       */
       let currentSection: string | null = null;
 
       for (const section of sections) {
@@ -173,11 +144,6 @@ export function Navbar() {
     };
   }, [scrollTarget]);
 
-  /*
-   * ---------------------------------------------------------
-   * Navigation click
-   * ---------------------------------------------------------
-   */
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
     sectionId: string,
@@ -190,25 +156,10 @@ export function Navbar() {
       return;
     }
 
-    /*
-     * Move indicator immediately.
-     */
     setActiveSection(sectionId);
-
-    /*
-     * Tell the scroll listener to temporarily keep
-     * this section active.
-     */
     setScrollTarget(sectionId);
-
-    /*
-     * Close mobile drawer.
-     */
     setIsMenuOpen(false);
 
-    /*
-     * Respect reduced-motion preference.
-     */
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -219,11 +170,6 @@ export function Navbar() {
     });
   };
 
-  /*
-   * ---------------------------------------------------------
-   * Close mobile menu
-   * ---------------------------------------------------------
-   */
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -272,7 +218,7 @@ export function Navbar() {
           "
         >
           <img
-            src={northlightMark}
+            src="/logo/northlight-mark.svg"
             alt=""
             aria-hidden="true"
             className="h-8 w-8"
@@ -430,7 +376,7 @@ export function Navbar() {
                   "
                 >
                   <img
-                    src={northlightMark}
+                    src="/logo/northlight-mark.svg"
                     alt=""
                     aria-hidden="true"
                     className="h-8 w-8"

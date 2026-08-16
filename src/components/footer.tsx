@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-import northlightMark from "@/assets/logo/northlight-mark.svg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { footerLinkGroups } from "@/mock/footer";
@@ -71,9 +69,9 @@ export function Footer() {
             aria-labelledby="footer-brand-heading"
             className="
                 col-span-2
-  min-[641px]:col-span-4
-  min-[901px]:col-span-1
-  min-[901px]:row-span-1
+                min-[641px]:col-span-4
+                min-[901px]:col-span-1
+                min-[901px]:row-span-1
             "
           >
             {/* Logo */}
@@ -87,7 +85,7 @@ export function Footer() {
               "
             >
               <img
-                src={northlightMark}
+                src="/logo/northlight-mark.svg"
                 alt=""
                 aria-hidden="true"
                 className="

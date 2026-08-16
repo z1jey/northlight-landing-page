@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import AnimatedContent from "@/components/animations/AnimatedContent";
 
 export function Hero() {
   return (
@@ -12,9 +11,8 @@ export function Hero() {
         bg-[radial-gradient(78%_55%_at_50%_0%,#EDF1FF_0%,rgba(246,247,251,0)_72%)]
       "
     >
-      <AnimatedContent delay={0.7}>
-        <div
-          className="
+      <div
+        className="
           mx-auto
           flex
           max-w-[1200px]
@@ -26,10 +24,10 @@ export function Hero() {
           min-[901px]:px-6
           min-[901px]:py-24
         "
-        >
-          {/* Announcement */}
-          <div
-            className="
+      >
+        {/* Announcement */}
+        <div
+          className="
             inline-flex
             items-center
             gap-2
@@ -46,31 +44,31 @@ export function Hero() {
             text-[#525F72]
             shadow-[0_1px_2px_rgba(10,16,36,0.06)]
           "
-          >
-            <span
-              aria-hidden="true"
-              className="
+        >
+          <span
+            aria-hidden="true"
+            className="
               h-1.5
               w-1.5
               rounded-full
               bg-[#2B59FF]
             "
-            />
-            <span className="font-inter-regular">New — Funnel insights v2</span>
-          </div>
+          />
 
-          {/* Hero copy */}
-          <div
-            className="
+          <span className="font-inter-regular">New — Funnel insights v2</span>
+        </div>
+
+        {/* Hero copy */}
+        <div
+          className="
             mt-8
             max-w-[760px]
             text-center
-            min-[641px]:mt-8
           "
-          >
-            <h1
-              id="hero-heading"
-              className="
+        >
+          <h1
+            id="hero-heading"
+            className="
               font-instrument-bold
               text-[clamp(36px,22.4px+3.6vw,60px)]
               font-semibold
@@ -78,14 +76,14 @@ export function Hero() {
               tracking-[-0.03em]
               text-[#0A1024]
             "
-            >
-              See what your
-              <br />
-              product is really doing.
-            </h1>
+          >
+            See what your
+            <br />
+            product is really doing.
+          </h1>
 
-            <p
-              className="
+          <p
+            className="
               mx-auto
               mt-6
               max-w-[680px]
@@ -96,16 +94,15 @@ export function Hero() {
               text-[#525F72]
               min-[641px]:text-[18px]
             "
-            >
-              Northlight turns raw product events into answers your whole team
-              can act on — no SQL, no data ticket queue, no waiting until
-              Thursday.
-            </p>
-          </div>
+          >
+            Northlight turns raw product events into answers your whole team can
+            act on — no SQL, no data ticket queue, no waiting until Thursday.
+          </p>
+        </div>
 
-          {/* Hero actions */}
-          <div
-            className="
+        {/* Hero actions */}
+        <div
+          className="
             mt-8
             flex
             w-full
@@ -114,38 +111,38 @@ export function Hero() {
             min-[641px]:w-auto
             min-[641px]:flex-row
           "
+        >
+          <a
+            href="#start-free-trial"
+            className={cn(
+              buttonVariants({
+                variant: "primary",
+                size: "lg",
+              }),
+              "w-full min-[641px]:w-auto",
+            )}
           >
-            <a
-              href="#start-free-trial"
-              className={cn(
-                buttonVariants({
-                  variant: "primary",
-                  size: "lg",
-                }),
-                "w-full min-[641px]:w-auto",
-              )}
-            >
-              Start free trial
-            </a>
+            Start free trial
+          </a>
 
-            <a
-              href="#book-demo"
-              className={cn(
-                buttonVariants({
-                  variant: "secondary",
-                  size: "lg",
-                }),
-                "w-full min-[641px]:w-auto font-inter-semibold",
-              )}
-            >
-              Book a demo
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </a>
-          </div>
+          <a
+            href="#book-demo"
+            className={cn(
+              buttonVariants({
+                variant: "secondary",
+                size: "lg",
+              }),
+              "w-full min-[641px]:w-auto font-inter-semibold",
+            )}
+          >
+            Book a demo
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </a>
+        </div>
 
-          {/* Trial reassurance */}
-          <p
-            className="
+        {/* Trial reassurance */}
+        <p
+          className="
             mt-3
             font-inter-regular
             text-[14px]
@@ -153,36 +150,35 @@ export function Hero() {
             leading-[1.65]
             text-[#6A707F]
           "
-          >
-            Free 14-day trial · No credit card required
-          </p>
+        >
+          Free 14-day trial · No credit card required
+        </p>
 
-          {/* Product image */}
-          <div
-            className="
+        {/* Product image */}
+        <div
+          className="
             mt-12
             w-full
             min-[641px]:mt-16
             min-[901px]:mt-20
           "
-          >
-            <img
-              src="/images/hero-dashboard.svg"
-              fetchPriority="high"
-              alt="Northlight product analytics dashboard showing user activity, conversion, and session metrics"
-              className="
-                mx-auto
-                block
-                w-full
-                max-w-[960px]
-                rounded-[16px]
-                object-contain
-                [filter:drop-shadow(0_24px_48px_rgba(10,16,36,0.12))]
-          "
-            />
-          </div>
+        >
+          <img
+            src="/images/hero-dashboard.svg"
+            fetchPriority="high"
+            alt="Northlight product analytics dashboard showing user activity, conversion, and session metrics"
+            className="
+              mx-auto
+              block
+              w-full
+              max-w-[960px]
+              rounded-[16px]
+              object-contain
+              [filter:drop-shadow(0_24px_48px_rgba(10,16,36,0.12))]
+            "
+          />
         </div>
-      </AnimatedContent>
+      </div>
     </section>
   );
 }
