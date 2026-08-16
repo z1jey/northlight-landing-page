@@ -54,7 +54,12 @@ To preview the production build locally:
 ```bash
 npm run preview
 ```
+Note: I forgot to include the approximate development time in my submission file, so I am adding it here for reference.
 
+Approximate development time: Around 9 hours in total.
+- 7 hours for design implementation and coding.
+- 2 hours for project setup, including dependency setup, asset imports, reusable components, debugging, polishing, testing, and deployment.
+- 
 ## Features
 
 - Responsive desktop, tablet, and mobile layouts
